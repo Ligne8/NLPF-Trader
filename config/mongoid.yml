@@ -1,0 +1,14 @@
+development:
+  clients:
+    default:
+      uri: mongodb+srv://Naron:vaoZxFH5fIq9D7y6@cluster95409.mf5ur.mongodb.net/nlpf_trader_development
+
+test:
+  clients:
+    default:
+      uri: mongodb+srv://Naron:vaoZxFH5fIq9D7y6@cluster95409.mf5ur.mongodb.net/nlpf_trader_test
+
+production:
+  clients:
+    default:
+      uri: mongodb+srv://Naron:vaoZxFH5fIq9D7y6@cluster95409.mf5ur.mongodb.net/nlpf_trader_production
