@@ -1,19 +1,6 @@
 development:
   clients:
     default:
-      uri: mongodb://ligne8:ligne8password@localhost:27017/nlpf_trader_development
-      options:
-        auth_source: admin
-test:
-  clients:
-    default:
-      uri: mongodb://ligne8:ligne8password@localhost:27017/nlpf_trader_test
-      options:
-        auth_source: admin
-
-production:
-  clients:
-    default:
-      uri: mongodb://ligne8:ligne8password@localhost:27017/nlpf_trader_production
+      uri: mongodb://ligne8:ligne8password@mongo:27017/nlpf_trader
       options:
         auth_source: admin

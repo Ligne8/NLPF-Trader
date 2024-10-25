@@ -12,3 +12,16 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ligne8password
     volumes:
       - ./db_data/:/data/db/
+
+  web:
+    build: .
+    container_name: rails_app
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails server -b 0.0.0.0"
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      DATABASE_URL: mongodb://ligne8:ligne8password@mongo:27017/nlpf_trader
