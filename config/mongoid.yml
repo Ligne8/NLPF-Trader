@@ -1,14 +1,19 @@
 development:
   clients:
     default:
-      uri: mongodb+srv://Naron:vaoZxFH5fIq9D7y6@cluster95409.mf5ur.mongodb.net/nlpf_trader_development
-
+      uri: mongodb://ligne8:ligne8password@localhost:27017/nlpf_trader_development
+      options:
+        auth_source: admin
 test:
   clients:
     default:
-      uri: mongodb+srv://Naron:vaoZxFH5fIq9D7y6@cluster95409.mf5ur.mongodb.net/nlpf_trader_test
+      uri: mongodb://ligne8:ligne8password@localhost:27017/nlpf_trader_test
+      options:
+        auth_source: admin
 
 production:
   clients:
     default:
-      uri: mongodb+srv://Naron:vaoZxFH5fIq9D7y6@cluster95409.mf5ur.mongodb.net/nlpf_trader_production
+      uri: mongodb://ligne8:ligne8password@localhost:27017/nlpf_trader_production
+      options:
+        auth_source: admin
