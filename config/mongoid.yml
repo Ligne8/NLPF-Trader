@@ -1,6 +1,6 @@
 development:
   clients:
     default:
-      uri: <%= ENV['DATABASE_URL'] %>
+      uri: <%= ENV['DATABASE_URL'] %>/trader
       options:
         auth_source: admin

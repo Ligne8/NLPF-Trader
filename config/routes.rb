@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :traders, only: [] do
-    post 'lots/:lot_id', to: 'traders#assign_lot', on: :collection
-  end
+  post '/traders/lots/:lot_id', to: 'traders#assign_lot'
+  get '/traders/lots/:trader_id', to: 'traders#get_trader_lots'
 end
