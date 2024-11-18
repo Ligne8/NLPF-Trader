@@ -1,6 +1,6 @@
 development:
   clients:
     default:
-      uri: mongodb://ligne8:ligne8password@mongo:27017/nlpf_trader
+      uri: <%= ENV['DATABASE_URL'] %>
       options:
         auth_source: admin
