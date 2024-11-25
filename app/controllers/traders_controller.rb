@@ -15,7 +15,7 @@ class TradersController < ApplicationController
     end
 
     lot_data = JSON.parse(response.body)
-    if lot_data['status'] != 'available'
+    if lot_data['status'] != 'pending'
       return render json: { error: 'Lot is already assigned or not available' }, status: :unprocessable_entity
     end
 
@@ -109,7 +109,7 @@ class TradersController < ApplicationController
     end
 
     tractor_data = JSON.parse(response.body)
-    if tractor_data['status'] != 'available'
+    if tractor_data['status'] != 'pending'
       return render json: { error: 'Tractor is already assigned or not available' }, status: :unprocessable_entity
     end
 
