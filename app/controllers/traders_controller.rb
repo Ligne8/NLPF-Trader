@@ -1,5 +1,24 @@
 class TradersController < ApplicationController
-  # Assigne un lot à un trader
+  def broadcast_message
+    socket_url = ENV['SOCKET_URL']
+    if socket_url.nil?
+      return render json: { error: 'La variable d\'environnement SOCKET_URL est manquante' }, status: :internal_server_error
+    end
+
+    uri = URI("#{socket_url}/broadcast")
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Post.new(uri.path)
+
+    response = http.request(request)
+    if response.is_a?(Net::HTTPSuccess)
+      render json: { message: 'Message broadcasté avec succès' }, status: :ok
+    else
+      render json: { error: "Échec du broadcast : #{response.message}" }, status: response.code.to_i
+    end
+  rescue StandardError => e
+    render json: { error: "Une erreur s'est produite : #{e.message}" }, status: :internal_server_error
+  end
+
   def assign_lot
     lot_id = params[:lot_id]
     assets_url = ENV['ASSETS_URL']
@@ -52,6 +71,7 @@ class TradersController < ApplicationController
       return render json: { error: "Failed to update lot status: #{response.message}" }, status: response.code.to_i
     end
 
+    broadcast_message
     render json: { message: 'Lot assigned to trader', trader_id: selected_trader[:id] }, status: :created
   rescue StandardError => e
     render json: { error: "An error occurred: #{e.message}" }, status: :internal_server_error
@@ -149,6 +169,7 @@ class TradersController < ApplicationController
       return render json: { error: "Failed to update tractor status: #{response.message}" }, status: response.code.to_i
     end
 
+    broadcast_message
     render json: { message: 'Tractor assigned to trader', trader_id: selected_trader[:id] }, status: :created
   rescue StandardError => e
     render json: { error: "An error occurred: #{e.message}" }, status: :internal_server_error
