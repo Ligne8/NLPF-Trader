@@ -6,13 +6,8 @@ class TradersController < ApplicationController
     end
 
     uri = URI("#{socket_url}/broadcast")
-    http = Net::HTTP.new(uri.host, uri.port)
-    request = Net::HTTP::Post.new(uri.path)
-
-    response = http.request(request)
-    render json: { message: 'Message broadcasté avec succès' }, status: :ok if response.is_a?(Net::HTTPSuccess)
-  rescue StandardError => e
-    render json: { error: "Une erreur s'est produite : #{e.message}" }, status: :internal_server_error
+    Net::HTTP.new(uri.host, uri.port)
+    Net::HTTP::Post.new(uri.path)
   end
 
   def assign_lot
