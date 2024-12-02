@@ -10,11 +10,7 @@ class TradersController < ApplicationController
     request = Net::HTTP::Post.new(uri.path)
 
     response = http.request(request)
-    if response.is_a?(Net::HTTPSuccess)
-      render json: { message: 'Message broadcasté avec succès' }, status: :ok
-    else
-      render json: { error: "Échec du broadcast : #{response.message}" }, status: response.code.to_i
-    end
+    render json: { message: 'Message broadcasté avec succès' }, status: :ok if response.is_a?(Net::HTTPSuccess)
   rescue StandardError => e
     render json: { error: "Une erreur s'est produite : #{e.message}" }, status: :internal_server_error
   end
